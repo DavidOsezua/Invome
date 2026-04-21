@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Iconography</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+<style>
+  body { padding: 24px; font-family: var(--font-sans); }
+  .grid { display: grid; grid-template-columns: repeat(8, 1fr); gap: 10px; }
+  .ico {
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+    padding: 10px 6px; border: 1px solid #E5E7EB; border-radius: 6px; background: #fff;
+    color: #4B5563;
+  }
+  .ico span { font-size: 10px; color: #9CA3AF; font-weight: 500; font-variant-numeric: tabular-nums; }
+  .rules { margin-top: 14px; font-size: 12px; color: #4B5563; line-height: 1.55; padding: 10px 12px; background: #F8FAFC; border: 1px solid #E5E7EB; border-radius: 6px; }
+  .rules b { color: #111827; }
+</style>
+</head>
+<body>
+  <div class="grid">
+    <div class="ico"><i data-lucide="layout-dashboard" style="width:20px;height:20px;stroke-width:1.5"></i><span>dashboard</span></div>
+    <div class="ico"><i data-lucide="file-text" style="width:20px;height:20px;stroke-width:1.5"></i><span>invoice</span></div>
+    <div class="ico"><i data-lucide="users" style="width:20px;height:20px;stroke-width:1.5"></i><span>clients</span></div>
+    <div class="ico"><i data-lucide="bar-chart-2" style="width:20px;height:20px;stroke-width:1.5"></i><span>reports</span></div>
+    <div class="ico"><i data-lucide="settings" style="width:20px;height:20px;stroke-width:1.5"></i><span>settings</span></div>
+    <div class="ico"><i data-lucide="plus" style="width:20px;height:20px;stroke-width:1.5"></i><span>new</span></div>
+    <div class="ico"><i data-lucide="search" style="width:20px;height:20px;stroke-width:1.5"></i><span>search</span></div>
+    <div class="ico"><i data-lucide="filter" style="width:20px;height:20px;stroke-width:1.5"></i><span>filter</span></div>
+    <div class="ico"><i data-lucide="download" style="width:20px;height:20px;stroke-width:1.5"></i><span>download</span></div>
+    <div class="ico"><i data-lucide="send" style="width:20px;height:20px;stroke-width:1.5"></i><span>send</span></div>
+    <div class="ico"><i data-lucide="check-circle-2" style="width:20px;height:20px;stroke-width:1.5"></i><span>mark paid</span></div>
+    <div class="ico"><i data-lucide="clock" style="width:20px;height:20px;stroke-width:1.5"></i><span>outstanding</span></div>
+    <div class="ico"><i data-lucide="alert-triangle" style="width:20px;height:20px;stroke-width:1.5"></i><span>overdue</span></div>
+    <div class="ico"><i data-lucide="pencil" style="width:20px;height:20px;stroke-width:1.5"></i><span>edit</span></div>
+    <div class="ico"><i data-lucide="copy" style="width:20px;height:20px;stroke-width:1.5"></i><span>duplicate</span></div>
+    <div class="ico"><i data-lucide="more-horizontal" style="width:20px;height:20px;stroke-width:1.5"></i><span>more</span></div>
+  </div>
+  <div class="rules"><b>Lucide only.</b> Stroke 1.5. Sizes 20px (default) or 24px (emphasis). Color inherits <code>currentColor</code> — default <code>#4B5563</code>, active/selected <code>#1E2A44</code>, status icons use their semantic color. No emoji in product UI.</div>
+  <script>lucide.createIcons();</script>
+</body>
+</html>

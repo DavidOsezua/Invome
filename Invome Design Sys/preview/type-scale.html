@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Type Scale</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { padding: 24px; }
+  .row {
+    display: grid; grid-template-columns: 64px 80px 1fr; gap: 16px;
+    align-items: baseline; padding: 10px 0; border-bottom: 1px solid var(--color-border);
+  }
+  .row:last-child { border-bottom: 0; }
+  .px { font-size: 11px; color: var(--color-text-muted); font-variant-numeric: tabular-nums; font-weight: 500; }
+  .label { font-size: 11px; color: var(--color-text-secondary); font-weight: 500; text-transform: uppercase; letter-spacing: 0.04em; }
+  .sample { color: var(--color-text-primary); line-height: 1.2; }
+</style>
+</head>
+<body>
+  <div class="row"><span class="px">32 / 600</span><span class="label">H1</span><span class="sample" style="font-size:32px;font-weight:600;letter-spacing:-0.02em">Invoices</span></div>
+  <div class="row"><span class="px">24 / 600</span><span class="label">H2</span><span class="sample" style="font-size:24px;font-weight:600">Outstanding balance</span></div>
+  <div class="row"><span class="px">18 / 600</span><span class="label">H3</span><span class="sample" style="font-size:18px;font-weight:600">Invoice #INV-0142</span></div>
+  <div class="row"><span class="px">16 / 400</span><span class="label">Body lg</span><span class="sample" style="font-size:16px">Waiting for payment from Adaeze Okafor.</span></div>
+  <div class="row"><span class="px">14 / 400</span><span class="label">Body</span><span class="sample" style="font-size:14px">Default body copy. Table rows, form labels, most UI text.</span></div>
+  <div class="row"><span class="px">12 / 500</span><span class="label">Caption</span><span class="sample" style="font-size:12px;color:#4B5563;font-weight:500">Due Apr 24, 2026 · sent 3 days ago</span></div>
+  <div class="row"><span class="px">10 / 600</span><span class="label">Micro</span><span class="sample" style="font-size:10px;color:#9CA3AF;font-weight:600;text-transform:uppercase;letter-spacing:0.08em">INV · NGN · 2026</span></div>
+</body>
+</html>

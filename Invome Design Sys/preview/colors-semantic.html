@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Semantic Status Colors</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { padding: 24px; }
+  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .row {
+    display: grid; grid-template-columns: 32px 1fr auto; gap: 14px; align-items: center;
+    padding: 14px; border: 1px solid var(--color-border); border-radius: 8px; background: var(--color-surface);
+  }
+  .dot { width: 32px; height: 32px; border-radius: 8px; border: 1px solid var(--color-border); }
+  .name { font-size: 13px; font-weight: 600; color: var(--color-text-primary); }
+  .role { font-size: 12px; color: var(--color-text-secondary); margin-top: 2px; }
+  .badge {
+    font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 9999px;
+    font-variant-numeric: tabular-nums;
+  }
+</style>
+</head>
+<body>
+  <div class="grid">
+    <div class="row">
+      <div class="dot" style="background:#16A34A"></div>
+      <div><div class="name">Success — Paid</div><div class="role">#16A34A · bg #DCFCE7</div></div>
+      <span class="badge" style="background:#DCFCE7;color:#15803D">Paid</span>
+    </div>
+    <div class="row">
+      <div class="dot" style="background:#2563EB"></div>
+      <div><div class="name">Info — Sent</div><div class="role">#2563EB · bg #DBEAFE</div></div>
+      <span class="badge" style="background:#DBEAFE;color:#1D4ED8">Sent</span>
+    </div>
+    <div class="row">
+      <div class="dot" style="background:#F59E0B"></div>
+      <div><div class="name">Warning — Overdue</div><div class="role">#F59E0B · bg #FEF3C7</div></div>
+      <span class="badge" style="background:#FEF3C7;color:#B45309">Overdue</span>
+    </div>
+    <div class="row">
+      <div class="dot" style="background:#DC2626"></div>
+      <div><div class="name">Danger — Cancelled</div><div class="role">#DC2626 · bg #FEE2E2</div></div>
+      <span class="badge" style="background:#FEE2E2;color:#B91C1C">Cancelled</span>
+    </div>
+    <div class="row">
+      <div class="dot" style="background:#9CA3AF"></div>
+      <div><div class="name">Neutral — Draft</div><div class="role">#9CA3AF · bg #F3F4F6</div></div>
+      <span class="badge" style="background:#F3F4F6;color:#4B5563">Draft</span>
+    </div>
+    <div class="row">
+      <div class="dot" style="background:#1E2A44"></div>
+      <div><div class="name">Brand — Emphasis</div><div class="role">#1E2A44 · on white</div></div>
+      <span class="badge" style="background:#1E2A44;color:#fff">Invome</span>
+    </div>
+  </div>
+</body>
+</html>

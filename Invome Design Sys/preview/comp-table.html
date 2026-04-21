@@ -1,0 +1,117 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Invoice row</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+<style>
+  body { padding: 24px; font-family: var(--font-sans); background: var(--color-canvas); }
+  .table {
+    background: #fff; border: 1px solid #E5E7EB; border-radius: 8px; overflow: hidden;
+    box-shadow: 0 1px 2px rgba(17,24,39,0.04);
+  }
+  .bulk {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 16px; background: #F8FAFC; border-bottom: 1px solid #E5E7EB;
+  }
+  .bulk .count { font-size: 13px; color: #111827; font-weight: 500; }
+  .bulk button {
+    display: inline-flex; align-items: center; gap: 6px;
+    height: 28px; padding: 0 10px; border-radius: 5px;
+    font-family: inherit; font-size: 12px; font-weight: 500;
+    background: #fff; color: #111827; border: 1px solid #E5E7EB; cursor: pointer;
+  }
+  .bulk button.danger { color: #B91C1C; }
+  .bulk button.danger:hover { background: #FEE2E2; border-color: #FCA5A5; }
+  .bulk .clear { margin-left: auto; background: none; border: 0; color: #4B5563; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  thead th {
+    text-align: left; padding: 10px 16px; background: #F8FAFC;
+    font-size: 11px; font-weight: 600; color: #4B5563;
+    letter-spacing: 0.04em; text-transform: uppercase;
+    border-bottom: 1px solid #E5E7EB;
+  }
+  thead th.num { text-align: right; }
+  tbody td { padding: 13px 16px; border-bottom: 1px solid #F3F4F6; color: #111827; vertical-align: middle; }
+  tbody tr:last-child td { border-bottom: 0; }
+  tbody tr.selected td { background: #F8FAFC; }
+  tbody tr:hover td { background: #F8FAFC; }
+
+  /* Custom checkbox — matches design system (rounded 4px, ink blue when checked) */
+  .cb {
+    appearance: none; -webkit-appearance: none;
+    width: 16px; height: 16px; border: 1.5px solid #D1D5DB; border-radius: 4px;
+    background: #fff; cursor: pointer; display: inline-block; position: relative;
+    vertical-align: middle;
+    transition: background 120ms, border-color 120ms;
+  }
+  .cb:hover { border-color: #9CA3AF; }
+  .cb:checked { background: #1E2A44; border-color: #1E2A44; }
+  .cb:checked::after {
+    content: ''; position: absolute; left: 4px; top: 1px;
+    width: 4px; height: 8px; border: solid #fff; border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+  .cb:indeterminate { background: #1E2A44; border-color: #1E2A44; }
+  .cb:indeterminate::after {
+    content: ''; position: absolute; left: 3px; top: 6px;
+    width: 8px; height: 2px; background: #fff;
+  }
+  .cb:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(30,42,68,0.12); }
+  th .cb, td .cb { margin: 0; }
+  .cb-cell { width: 36px; padding-right: 0 !important; }
+
+  .inv { font-weight: 500; color: #111827; font-variant-numeric: tabular-nums; }
+  .client { color: #111827; }
+  .client small { display: block; color: #9CA3AF; font-size: 12px; margin-top: 2px; }
+  .num { text-align: right; font-variant-numeric: tabular-nums; font-weight: 500; }
+  .due { color: #4B5563; font-variant-numeric: tabular-nums; }
+  .badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 11px; font-weight: 600; padding: 3px 9px; border-radius: 9999px;
+  }
+  .badge::before { content:''; width:6px; height:6px; border-radius:50%; background: currentColor; }
+  .paid { background: #DCFCE7; color: #15803D; }
+  .sent { background: #DBEAFE; color: #1D4ED8; }
+  .overdue { background: #FEF3C7; color: #B45309; }
+  .more { background: none; border: 0; color: #9CA3AF; cursor: pointer; padding: 4px; border-radius: 4px; }
+  .more:hover { background: #F3F4F6; color: #111827; }
+</style>
+</head>
+<body>
+  <div class="table">
+    <div class="bulk">
+      <span class="count">2 selected</span>
+      <button><i data-lucide="send" style="width:14px;height:14px"></i>Send</button>
+      <button><i data-lucide="check-circle-2" style="width:14px;height:14px"></i>Mark paid</button>
+      <button><i data-lucide="download" style="width:14px;height:14px"></i>Download</button>
+      <button class="danger"><i data-lucide="trash-2" style="width:14px;height:14px"></i>Delete</button>
+      <button class="clear">Clear</button>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th class="cb-cell"><input type="checkbox" class="cb" id="all" /></th>
+          <th>Invoice #</th>
+          <th>Client</th>
+          <th class="num">Amount</th>
+          <th>Status</th>
+          <th>Due</th>
+          <th style="width:40px"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="selected"><td class="cb-cell"><input type="checkbox" class="cb" checked /></td><td class="inv">INV-0142</td><td class="client">Adaeze Okafor<small>adaeze@brightlab.ng</small></td><td class="num">₦ 450,000.00</td><td><span class="badge sent">Sent</span></td><td class="due">Apr 24, 2026</td><td><button class="more"><i data-lucide="more-horizontal" style="width:16px;height:16px"></i></button></td></tr>
+        <tr><td class="cb-cell"><input type="checkbox" class="cb" /></td><td class="inv">INV-0141</td><td class="client">Lagos Logistics Ltd<small>accounts@lagoslog.com</small></td><td class="num">₦ 1,200,000.00</td><td><span class="badge paid">Paid</span></td><td class="due">Apr 10, 2026</td><td><button class="more"><i data-lucide="more-horizontal" style="width:16px;height:16px"></i></button></td></tr>
+        <tr class="selected"><td class="cb-cell"><input type="checkbox" class="cb" checked /></td><td class="inv">INV-0140</td><td class="client">Sarah Chen<small>sarah@northwindco.com</small></td><td class="num">$ 2,400.00</td><td><span class="badge overdue">Overdue</span></td><td class="due">Mar 28, 2026</td><td><button class="more"><i data-lucide="more-horizontal" style="width:16px;height:16px"></i></button></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <script>
+    lucide.createIcons();
+    // Show indeterminate state on header checkbox (2 of 3 selected)
+    document.getElementById('all').indeterminate = true;
+  </script>
+</body>
+</html>

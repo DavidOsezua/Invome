@@ -1,10 +1,19 @@
-import { Button } from "./components/ui/button";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import AuthLayout from "./layout/AuthLayout";
+import SignupPage from "./pages/SignupPage";
+import LoginPage from "./pages/LoginPage";
 
 const App = () => {
   return (
-    <div>
-      <Button className="bg-red-800 text-white">Click me</Button>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="auth" element={<AuthLayout />}>
+          <Route index path="login" element={<LoginPage />} />
+          <Route path="login" element={<LoginPage />} />
+          <Route path="signup" element={<SignupPage />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 };
 

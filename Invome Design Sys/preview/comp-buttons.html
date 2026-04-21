@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Buttons</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+<style>
+  body { padding: 24px; font-family: var(--font-sans); }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: inherit; font-size: 14px; font-weight: 500;
+    height: 36px; padding: 0 14px; border-radius: 6px;
+    border: 1px solid transparent; cursor: pointer;
+    transition: background 160ms, border-color 160ms, color 160ms;
+    line-height: 1;
+  }
+  .btn:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(30,42,68,0.12); }
+  .primary { background: #1E2A44; color: #fff; }
+  .primary:hover { background: #141d31; }
+  .secondary { background: #fff; color: #111827; border-color: #E5E7EB; }
+  .secondary:hover { background: #F8FAFC; border-color: #D1D5DB; }
+  .ghost { background: transparent; color: #4B5563; }
+  .ghost:hover { background: #F3F4F6; color: #111827; }
+  .danger { background: #fff; color: #B91C1C; border-color: #E5E7EB; }
+  .danger:hover { background: #FEE2E2; border-color: #FCA5A5; }
+  .small { height: 28px; padding: 0 10px; font-size: 12px; border-radius: 5px; }
+  .icon-only { width: 36px; padding: 0; justify-content: center; }
+  .disabled { opacity: 0.45; cursor: not-allowed; }
+  .loading { cursor: progress; }
+  .spinner {
+    width: 14px; height: 14px; border-radius: 50%;
+    border: 1.75px solid rgba(255,255,255,0.3);
+    border-top-color: #fff;
+    animation: spin 700ms linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 14px; }
+  h4 { margin: 0 0 10px; font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-text-muted); }
+  .lbl { font-size: 11px; color: var(--color-text-muted); min-width: 70px; }
+</style>
+</head>
+<body>
+  <h4>Variants</h4>
+  <div class="row">
+    <button class="btn primary"><i data-lucide="plus" style="width:16px;height:16px"></i>New invoice</button>
+    <button class="btn secondary">Save draft</button>
+    <button class="btn ghost">Cancel</button>
+    <button class="btn danger">Delete</button>
+    <button class="btn primary loading" disabled><span class="spinner"></span>Send invoice</button>
+  </div>
+  <h4>Sizes & icon</h4>
+  <div class="row">
+    <button class="btn primary small">Mark paid</button>
+    <button class="btn secondary small"><i data-lucide="download" style="width:14px;height:14px"></i>PDF</button>
+    <button class="btn secondary icon-only"><i data-lucide="more-horizontal" style="width:18px;height:18px"></i></button>
+    <button class="btn secondary icon-only"><i data-lucide="pencil" style="width:18px;height:18px"></i></button>
+    <button class="btn secondary icon-only"><i data-lucide="trash-2" style="width:18px;height:18px"></i></button>
+  </div>
+  <script>lucide.createIcons();</script>
+</body>
+</html>

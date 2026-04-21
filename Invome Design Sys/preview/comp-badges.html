@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Status Badges</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { padding: 24px; font-family: var(--font-sans); }
+  .row { display: flex; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; }
+  .badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 12px; font-weight: 600; line-height: 1;
+    padding: 5px 10px; border-radius: 9999px;
+  }
+  .badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+  .paid { background: #DCFCE7; color: #15803D; }
+  .sent { background: #DBEAFE; color: #1D4ED8; }
+  .overdue { background: #FEF3C7; color: #B45309; }
+  .draft { background: #F3F4F6; color: #4B5563; }
+  .cancelled { background: #FEE2E2; color: #B91C1C; }
+  .pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 12px; font-weight: 500; padding: 4px 10px;
+    border-radius: 9999px; background: #fff; color: #4B5563;
+    border: 1px solid #E5E7EB;
+  }
+  h4 { margin: 0 0 10px; font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-text-muted); }
+</style>
+</head>
+<body>
+  <h4>Invoice status</h4>
+  <div class="row">
+    <span class="badge paid">Paid</span>
+    <span class="badge sent">Sent</span>
+    <span class="badge overdue">Overdue</span>
+    <span class="badge draft">Draft</span>
+    <span class="badge cancelled">Cancelled</span>
+  </div>
+  <h4>Meta pills</h4>
+  <div class="row">
+    <span class="pill">NGN</span>
+    <span class="pill">USD</span>
+    <span class="pill">Due Apr 24</span>
+    <span class="pill">3 line items</span>
+  </div>
+</body>
+</html>

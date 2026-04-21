@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Stat Cards</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+<style>
+  body { padding: 24px; font-family: var(--font-sans); background: var(--color-canvas); }
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .card {
+    background: #fff; border: 1px solid #E5E7EB; border-radius: 8px;
+    padding: 18px 18px 16px;
+    box-shadow: 0 1px 2px rgba(17,24,39,0.04);
+  }
+  .card.tint-red { background: linear-gradient(#fff, #fff) padding-box, #FEF2F2; background: #FEF2F2; border-color: #FECACA80; }
+  .card.tint-green { background: #F0FDF4; border-color: #BBF7D080; }
+  .top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+  .label { font-size: 12px; font-weight: 500; color: #4B5563; letter-spacing: 0.01em; }
+  .icon {
+    width: 28px; height: 28px; border-radius: 6px; background: #F3F4F6;
+    display: grid; place-items: center; color: #4B5563;
+  }
+  .tint-red .icon { background: #FEE2E2; color: #B91C1C; }
+  .tint-green .icon { background: #DCFCE7; color: #15803D; }
+  .value { font-size: 24px; font-weight: 600; color: #111827; font-variant-numeric: tabular-nums; letter-spacing: -0.01em; line-height: 1.1; }
+  .delta { font-size: 12px; color: #4B5563; margin-top: 6px; font-variant-numeric: tabular-nums; }
+  .delta b { color: #15803D; font-weight: 600; }
+  .delta .down { color: #B91C1C; }
+  .currency { color: #9CA3AF; font-weight: 500; font-size: 14px; margin-right: 2px; }
+</style>
+</head>
+<body>
+  <div class="grid">
+    <div class="card tint-red">
+      <div class="top"><span class="label">Outstanding</span><span class="icon"><i data-lucide="clock" style="width:16px;height:16px;stroke-width:1.5"></i></span></div>
+      <div class="value"><span class="currency">₦</span>1,284,500</div>
+      <div class="delta">Across 7 invoices</div>
+    </div>
+    <div class="card tint-green">
+      <div class="top"><span class="label">Paid this month</span><span class="icon"><i data-lucide="check-circle-2" style="width:16px;height:16px;stroke-width:1.5"></i></span></div>
+      <div class="value"><span class="currency">₦</span>3,420,000</div>
+      <div class="delta"><b>↑ 18%</b> vs last month</div>
+    </div>
+    <div class="card">
+      <div class="top"><span class="label">Overdue</span><span class="icon"><i data-lucide="alert-triangle" style="width:16px;height:16px;stroke-width:1.5"></i></span></div>
+      <div class="value">3</div>
+      <div class="delta"><span class="down">2 over 14 days</span></div>
+    </div>
+    <div class="card">
+      <div class="top"><span class="label">Total clients</span><span class="icon"><i data-lucide="users" style="width:16px;height:16px;stroke-width:1.5"></i></span></div>
+      <div class="value">24</div>
+      <div class="delta">+2 this month</div>
+    </div>
+  </div>
+  <script>lucide.createIcons();</script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Brand</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { padding: 24px; }
+  .row { display: flex; align-items: center; gap: 32px; }
+  .lockup { display: flex; align-items: center; gap: 12px; }
+  .mark {
+    width: 44px; height: 44px; border-radius: 10px;
+    background: var(--color-ink-blue);
+    display: grid; place-items: center;
+  }
+  .wordmark { font-size: 28px; font-weight: 600; letter-spacing: -0.02em; color: var(--color-text-primary); }
+  .on-dark {
+    background: var(--color-ink-blue);
+    border-radius: 10px;
+    padding: 14px 20px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .on-dark .mark-inverse {
+    width: 32px; height: 32px; border-radius: 7px; background: #fff;
+    display: grid; place-items: center;
+  }
+  .on-dark .wordmark-inverse { color: #fff; font-size: 20px; font-weight: 600; letter-spacing: -0.02em; }
+  .meta { margin-top: 20px; display: flex; gap: 24px; }
+  .meta div { font-size: 12px; color: var(--color-text-muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.04em; }
+  .meta div span { display: block; color: var(--color-text-primary); font-size: 13px; font-weight: 600; text-transform: none; letter-spacing: 0; margin-top: 4px; font-variant-numeric: tabular-nums; }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="lockup">
+      <div class="mark">
+        <svg width="26" height="26" viewBox="0 0 32 32" fill="none">
+          <path d="M10 9.5v13M22 9.5v13M10 9.5l12 13" stroke="#fff" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="wordmark">Invome</div>
+    </div>
+    <div class="on-dark">
+      <div class="mark-inverse">
+        <svg width="20" height="20" viewBox="0 0 32 32" fill="none">
+          <path d="M10 9.5v13M22 9.5v13M10 9.5l12 13" stroke="#1E2A44" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="wordmark-inverse">Invome</div>
+    </div>
+  </div>
+  <div class="meta">
+    <div>Mark<span>Ink Blue #1E2A44</span></div>
+    <div>Wordmark<span>Inter SemiBold 600</span></div>
+    <div>Clear space<span>½ mark height on all sides</span></div>
+  </div>
+</body>
+</html>

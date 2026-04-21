@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Brand Colors</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { padding: 24px; }
+  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .sw {
+    display: grid; grid-template-columns: 64px 1fr; gap: 14px; align-items: center;
+    padding: 12px; border: 1px solid var(--color-border); border-radius: 8px; background: var(--color-surface);
+  }
+  .chip { width: 64px; height: 64px; border-radius: 8px; border: 1px solid var(--color-border); }
+  .name { font-size: 14px; font-weight: 600; color: var(--color-text-primary); }
+  .role { font-size: 12px; color: var(--color-text-secondary); margin-top: 2px; }
+  .hex { font-size: 12px; color: var(--color-text-muted); margin-top: 6px; font-variant-numeric: tabular-nums; letter-spacing: 0.02em; }
+</style>
+</head>
+<body>
+  <div class="grid">
+    <div class="sw">
+      <div class="chip" style="background:#1E2A44"></div>
+      <div>
+        <div class="name">Ink Blue</div>
+        <div class="role">Primary — nav, buttons, headings</div>
+        <div class="hex">#1E2A44</div>
+      </div>
+    </div>
+    <div class="sw">
+      <div class="chip" style="background:#16A34A"></div>
+      <div>
+        <div class="name">Signal Green</div>
+        <div class="role">Accent — use sparingly, paid only</div>
+        <div class="hex">#16A34A</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

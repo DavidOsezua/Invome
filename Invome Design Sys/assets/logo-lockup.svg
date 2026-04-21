@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 148 32" width="148" height="32" fill="none">
+  <rect width="32" height="32" rx="7" fill="#1E2A44"></rect>
+  <path d="M10 9.5v13M22 9.5v13M10 9.5l12 13" stroke="#FFFFFF" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"></path>
+  <text x="44" y="22" font-family="Inter, sans-serif" font-size="18" font-weight="600" letter-spacing="-0.02em" fill="#111827">Invome</text>
+</svg>

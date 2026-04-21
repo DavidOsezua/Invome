@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Tabular numerals</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { padding: 24px; font-family: var(--font-sans); }
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .col { border: 1px solid var(--color-border); border-radius: 8px; background: var(--color-surface); padding: 16px; }
+  .col h4 { margin: 0 0 12px; font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-text-muted); }
+  .rule { font-size: 12px; color: var(--color-text-secondary); margin-top: 10px; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  td { padding: 4px 0; color: var(--color-text-primary); }
+  td:first-child { color: var(--color-text-secondary); }
+  td:last-child { text-align: right; font-weight: 600; }
+  .tab td:last-child { font-variant-numeric: tabular-nums; }
+  .bad td:last-child { font-variant-numeric: proportional-nums; }
+  .note { font-size: 11px; color: var(--color-text-muted); margin-top: 8px; }
+</style>
+</head>
+<body>
+  <div class="split">
+    <div class="col">
+      <h4>Proportional — ✗ wrong</h4>
+      <table class="bad">
+        <tr><td>Subtotal</td><td>₦ 1,250,000.00</td></tr>
+        <tr><td>VAT (7.5%)</td><td>₦ 93,750.00</td></tr>
+        <tr><td>Discount</td><td>₦ 50,000.00</td></tr>
+        <tr><td><b>Total</b></td><td>₦ 1,293,750.00</td></tr>
+      </table>
+      <div class="note">Columns drift. Commas and 1s don't line up.</div>
+    </div>
+    <div class="col">
+      <h4>Tabular — ✓ correct</h4>
+      <table class="tab">
+        <tr><td>Subtotal</td><td>₦ 1,250,000.00</td></tr>
+        <tr><td>VAT (7.5%)</td><td>₦ 93,750.00</td></tr>
+        <tr><td>Discount</td><td>₦ 50,000.00</td></tr>
+        <tr><td><b>Total</b></td><td>₦ 1,293,750.00</td></tr>
+      </table>
+      <div class="note">Every digit aligns. Non-negotiable for currency.</div>
+    </div>
+  </div>
+  <div class="rule">Apply <code style="font-family:ui-monospace,monospace;background:#F3F4F6;padding:1px 5px;border-radius:3px">font-variant-numeric: tabular-nums</code> (utility class <code style="font-family:ui-monospace,monospace;background:#F3F4F6;padding:1px 5px;border-radius:3px">.t-num</code>) on all financial figures.</div>
+</body>
+</html>

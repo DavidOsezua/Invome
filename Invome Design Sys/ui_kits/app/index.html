@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=1280">
+  <title>Invome — App UI Kit</title>
+  <link rel="stylesheet" href="../../colors_and_type.css">
+  <style>
+    body { background: #F8FAFC; min-height: 100vh; overflow-x: hidden; }
+    .app { display: flex; align-items: flex-start; }
+    .main { flex: 1; min-width: 0; padding: 32px 40px; max-width: 1200px; }
+    .toast-wrap { position: fixed; bottom: 24px; right: 24px; z-index: 200; pointer-events: none; }
+    .toast {
+      display: flex; align-items: flex-start; gap: 10px;
+      background: #fff; border: 1px solid #E5E7EB; border-radius: 8px;
+      padding: 12px 14px; min-width: 300px;
+      box-shadow: 0 12px 24px -6px rgba(17,24,39,0.10), 0 4px 8px -4px rgba(17,24,39,0.06);
+      pointer-events: auto;
+      animation: slideIn 200ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    @keyframes slideIn { from { opacity: 0; transform: translateY(8px); } }
+  </style>
+  <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <script src="data.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel" src="Primitives.jsx"></script>
+  <script type="text/babel" src="Layout.jsx"></script>
+  <script type="text/babel" src="Sidebar.jsx"></script>
+  <script type="text/babel" src="Dashboard.jsx"></script>
+  <script type="text/babel" src="InvoicesList.jsx"></script>
+  <script type="text/babel" src="InvoiceNew.jsx"></script>
+  <script type="text/babel" src="InvoiceDetail.jsx"></script>
+  <script type="text/babel" src="ClientsList.jsx"></script>
+  <script type="text/babel" src="Settings.jsx"></script>
+  <script type="text/babel">
+    const App = () => {
+      const [view, setView] = React.useState(() => localStorage.getItem('invome.view') || 'dashboard');
+      const [currentInvoice, setCurrentInvoice] = React.useState(() => localStorage.getItem('invome.inv') || 'INV-0142');
+      const [toast, setToast] = React.useState(null);
+
+      React.useEffect(() => { localStorage.setItem('invome.view', view); }, [view]);
+      React.useEffect(() => { if (currentInvoice) localStorage.setItem('invome.inv', currentInvoice); }, [currentInvoice]);
+
+      const showToast = (msg, sub) => {
+        setToast({ msg, sub });
+        setTimeout(() => setToast(null), 3200);
+      };
+
+      const nav = (id) => {
+        if (id === 'reports') { showToast('Reports', 'Out of MVP scope.'); return; }
+        setView(id);
+      };
+
+      const openInvoice = (id) => { setCurrentInvoice(id); setView('invoice-detail'); };
+      const newInvoice = () => setView('invoice-new');
+
+      let screen;
+      if (view === 'dashboard')       screen = <Dashboard onNav={nav} onOpenInvoice={openInvoice} />;
+      else if (view === 'invoices')   screen = <InvoicesList onOpenInvoice={openInvoice} onNew={newInvoice} />;
+      else if (view === 'invoice-new') screen = <InvoiceNew onCancel={() => setView('invoices')} onSave={() => { setView('invoices'); showToast('Invoice sent.', 'Waiting for payment from Adaeze Okafor.'); }} />;
+      else if (view === 'invoice-detail') screen = <InvoiceDetail invoiceId={currentInvoice} onBack={() => setView('invoices')} onMarkPaid={() => { showToast('Marked paid.', `${currentInvoice} moved to paid.`); }} />;
+      else if (view === 'clients')    screen = <ClientsList />;
+      else if (view === 'settings')   screen = <Settings />;
+      else                            screen = <Dashboard onNav={nav} onOpenInvoice={openInvoice} />;
+
+      return (
+        <div className="app" data-screen-label={`Invome · ${view}`}>
+          <Sidebar view={view} onNav={nav} onNewInvoice={newInvoice} />
+          <main className="main">{screen}</main>
+          {toast && (
+            <div className="toast-wrap">
+              <div className="toast">
+                <Icon name="check-circle-2" size={18} stroke={1.75} style={{ color: '#15803D', flexShrink: 0, marginTop: 1 }} />
+                <div style={{ fontSize: 13, color: '#111827', lineHeight: 1.45 }}>
+                  {toast.msg}
+                  <div style={{ color: '#4B5563', fontSize: 12, marginTop: 2 }}>{toast.sub}</div>
+                </div>
+                <button onClick={() => setToast(null)} style={{ marginLeft: 'auto', background: 'none', border: 0, color: '#9CA3AF', cursor: 'pointer', padding: 2 }}>
+                  <Icon name="x" size={14} />
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
+      );
+    };
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+</html>

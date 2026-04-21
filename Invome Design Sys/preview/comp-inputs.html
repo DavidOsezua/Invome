@@ -1,0 +1,140 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Form fields</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+<style>
+  body { padding: 24px; font-family: var(--font-sans); background: #F8FAFC; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 24px; align-items: flex-start; }
+  .field { position: relative; }
+  .field > label { display: block; font-size: 12px; font-weight: 500; color: var(--color-text-secondary); margin-bottom: 6px; }
+  .input {
+    width: 100%; height: 36px; padding: 0 12px;
+    border: 1px solid #E5E7EB; border-radius: 6px; background: #fff;
+    font-family: inherit; font-size: 14px; color: #111827;
+    transition: border-color 160ms, box-shadow 160ms;
+    box-sizing: border-box;
+  }
+  .input:focus { outline: none; border-color: #1E2A44; box-shadow: 0 0 0 3px rgba(30,42,68,0.12); }
+  .input.error { border-color: #DC2626; }
+  .err { font-size: 12px; color: #B91C1C; margin-top: 4px; }
+  .help { font-size: 12px; color: var(--color-text-muted); margin-top: 4px; }
+
+  .search { position: relative; }
+  .search i { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: #9CA3AF; }
+  .search .input { padding-left: 34px; }
+
+  /* Trigger — looks like an input, with chevron + value */
+  .trigger {
+    width: 100%; height: 36px; padding: 0 36px 0 12px;
+    border: 1px solid #E5E7EB; border-radius: 6px; background: #fff;
+    font-family: inherit; font-size: 14px; color: #111827;
+    text-align: left; cursor: pointer;
+    display: flex; align-items: center; gap: 8px;
+    transition: border-color 160ms, box-shadow 160ms;
+    position: relative;
+    box-sizing: border-box;
+  }
+  .trigger .chev { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); color: #9CA3AF; transition: transform 160ms; }
+  .trigger[data-open="true"] { border-color: #1E2A44; box-shadow: 0 0 0 3px rgba(30,42,68,0.12); }
+  .trigger[data-open="true"] .chev { transform: translateY(-50%) rotate(180deg); }
+  .trigger .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+  /* Overlay panel — floats above with its own rounded corners + shadow */
+  .panel {
+    position: absolute;
+    left: 0; right: 0; top: calc(100% + 6px);
+    background: #fff;
+    border: 1px solid #E5E7EB;
+    border-radius: 10px;
+    box-shadow: 0 12px 24px -6px rgba(17,24,39,0.12), 0 4px 10px -4px rgba(17,24,39,0.06);
+    padding: 6px;
+    z-index: 20;
+    animation: pop 140ms cubic-bezier(0.16, 1, 0.3, 1);
+    transform-origin: top center;
+  }
+  @keyframes pop { from { opacity: 0; transform: translateY(-4px) scale(0.98); } }
+  .panel[hidden] { display: none; }
+
+  .opt {
+    display: flex; align-items: center; gap: 10px;
+    padding: 8px 10px; border-radius: 6px;
+    font-size: 13px; color: #111827; cursor: pointer;
+    transition: background 120ms;
+  }
+  .opt:hover { background: #F3F4F6; }
+  .opt[data-selected="true"] { background: #F8FAFC; }
+  .opt .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .opt .label { flex: 1; }
+  .opt .meta { font-size: 11px; color: #9CA3AF; font-variant-numeric: tabular-nums; }
+  .opt .check { color: #1E2A44; opacity: 0; }
+  .opt[data-selected="true"] .check { opacity: 1; }
+
+  .panel-divider { height: 1px; background: #F3F4F6; margin: 4px 2px; }
+  .panel-label { padding: 8px 10px 4px; font-size: 11px; font-weight: 600; color: #9CA3AF; letter-spacing: 0.06em; text-transform: uppercase; }
+
+  .select-arrow {
+    appearance: none;
+    width: 100%; height: 36px; padding: 0 30px 0 12px;
+    border: 1px solid #E5E7EB; border-radius: 6px; background: #fff;
+    font-family: inherit; font-size: 14px; color: #111827;
+    background: #fff url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%239CA3AF' stroke-width='1.5'><polyline points='6 9 12 15 18 9'/></svg>") right 10px center / 14px no-repeat;
+    box-sizing: border-box;
+  }
+</style>
+</head>
+<body>
+  <div class="grid">
+    <div class="field">
+      <label>Client name</label>
+      <input class="input" value="Adaeze Okafor" />
+    </div>
+    <div class="field">
+      <label>Email</label>
+      <input class="input" placeholder="client@company.com" />
+    </div>
+
+    <div class="field">
+      <label>Search</label>
+      <div class="search">
+        <i data-lucide="search" style="width:16px;height:16px"></i>
+        <input class="input" placeholder="Search invoices…" />
+      </div>
+    </div>
+
+    <!-- Sophisticated dropdown — shown open, overlay panel with rounded corners + shadow -->
+    <div class="field">
+      <label>Status</label>
+      <button class="trigger" data-open="true" type="button">
+        <span class="dot" style="background:#2563EB"></span>
+        <span>Sent</span>
+        <i data-lucide="chevron-down" class="chev" style="width:16px;height:16px"></i>
+      </button>
+      <div class="panel">
+        <div class="panel-label">Filter by status</div>
+        <div class="opt" data-selected="false"><span class="dot" style="background:#9CA3AF"></span><span class="label">All statuses</span><span class="meta">15</span></div>
+        <div class="opt" data-selected="false"><span class="dot" style="background:#15803D"></span><span class="label">Paid</span><span class="meta">9</span></div>
+        <div class="opt" data-selected="true"><span class="dot" style="background:#2563EB"></span><span class="label">Sent</span><span class="meta">2</span><i data-lucide="check" class="check" style="width:14px;height:14px"></i></div>
+        <div class="opt" data-selected="false"><span class="dot" style="background:#B45309"></span><span class="label">Overdue</span><span class="meta">1</span></div>
+        <div class="opt" data-selected="false"><span class="dot" style="background:#4B5563"></span><span class="label">Draft</span><span class="meta">1</span></div>
+        <div class="panel-divider"></div>
+        <div class="opt" data-selected="false"><span class="dot" style="background:#B91C1C"></span><span class="label">Cancelled</span><span class="meta">1</span></div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Amount</label>
+      <input class="input error" value="-1,500" />
+      <div class="err">Amount must be positive.</div>
+    </div>
+    <div class="field">
+      <label>VAT rate</label>
+      <input class="input" value="7.5" />
+      <div class="help">Nigerian VAT default. Override per invoice in Settings.</div>
+    </div>
+  </div>
+  <script>lucide.createIcons();</script>
+</body>
+</html>

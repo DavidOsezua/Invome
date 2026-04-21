@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Toast & empty state</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+<style>
+  body { padding: 24px; font-family: var(--font-sans); background: #F8FAFC; }
+  .split { display: grid; grid-template-columns: 320px 1fr; gap: 20px; align-items: start; }
+  .toast {
+    display: flex; align-items: flex-start; gap: 10px;
+    background: #fff; border: 1px solid #E5E7EB; border-radius: 8px;
+    padding: 12px 14px;
+    box-shadow: 0 12px 24px -6px rgba(17,24,39,0.10), 0 4px 8px -4px rgba(17,24,39,0.06);
+  }
+  .toast i.check { color: #15803D; flex-shrink: 0; margin-top: 1px; }
+  .toast .body { font-size: 13px; color: #111827; line-height: 1.45; }
+  .toast .body small { display: block; color: #4B5563; font-size: 12px; margin-top: 2px; }
+  .toast .close { margin-left: auto; background: none; border: 0; color: #9CA3AF; cursor: pointer; padding: 2px; }
+
+  .empty {
+    background: #fff; border: 1px solid #E5E7EB; border-radius: 8px;
+    padding: 28px; text-align: center;
+  }
+  .empty .ico {
+    width: 40px; height: 40px; border-radius: 8px; background: #F3F4F6;
+    display: grid; place-items: center; color: #4B5563; margin: 0 auto 12px;
+  }
+  .empty h3 { margin: 0 0 4px; font-size: 15px; font-weight: 600; color: #111827; }
+  .empty p { margin: 0 0 14px; font-size: 13px; color: #4B5563; }
+  .empty button {
+    display: inline-flex; align-items: center; gap: 6px;
+    height: 32px; padding: 0 12px; border-radius: 6px;
+    background: #1E2A44; color: #fff; border: 0; font: inherit; font-size: 13px; font-weight: 500; cursor: pointer;
+  }
+  h4 { margin: 0 0 10px; font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-text-muted); }
+</style>
+</head>
+<body>
+  <div class="split">
+    <div>
+      <h4>Toast</h4>
+      <div class="toast">
+        <i data-lucide="check-circle-2" class="check" style="width:18px;height:18px;stroke-width:1.75"></i>
+        <div class="body">Invoice sent.<small>Waiting for payment from Adaeze Okafor.</small></div>
+        <button class="close"><i data-lucide="x" style="width:14px;height:14px"></i></button>
+      </div>
+    </div>
+    <div>
+      <h4>Empty state</h4>
+      <div class="empty">
+        <div class="ico"><i data-lucide="file-plus" style="width:20px;height:20px;stroke-width:1.5"></i></div>
+        <h3>No invoices yet</h3>
+        <p>Create your first invoice to see it here.</p>
+        <button><i data-lucide="plus" style="width:14px;height:14px;stroke-width:1.5"></i>New invoice</button>
+      </div>
+    </div>
+  </div>
+  <script>lucide.createIcons();</script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Invome — App UI Kit (Print)</title>
+  <link rel="stylesheet" href="../../colors_and_type.css">
+  <style>
+    body { background: #F8FAFC; margin: 0; }
+    .page {
+      width: 1280px; min-height: 820px; margin: 0 auto 24px;
+      background: #F8FAFC; break-after: page; page-break-after: always;
+      display: flex; align-items: flex-start; overflow: hidden;
+    }
+    .page:last-child { break-after: auto; page-break-after: auto; }
+    .main { flex: 1; min-width: 0; padding: 28px 36px; max-width: 1200px; }
+
+    @page { size: 1280px 900px; margin: 0; }
+    @media print {
+      html, body { background: #fff; }
+      * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+      .page { margin: 0; box-shadow: none; }
+    }
+
+    .screen-label {
+      position: absolute; top: 8px; left: 12px;
+      font-size: 10px; font-weight: 600; color: #9CA3AF;
+      letter-spacing: 0.08em; text-transform: uppercase;
+    }
+    .page-wrap { position: relative; }
+  </style>
+  <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <script src="data.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel" src="Primitives.jsx"></script>
+  <script type="text/babel" src="Layout.jsx"></script>
+  <script type="text/babel" src="Sidebar.jsx"></script>
+  <script type="text/babel" src="Dashboard.jsx"></script>
+  <script type="text/babel" src="InvoicesList.jsx"></script>
+  <script type="text/babel" src="InvoiceNew.jsx"></script>
+  <script type="text/babel" src="InvoiceDetail.jsx"></script>
+  <script type="text/babel" src="ClientsList.jsx"></script>
+  <script type="text/babel" src="Settings.jsx"></script>
+  <script type="text/babel">
+    const noop = () => {};
+    const Page = ({ label, children }) => (
+      <div className="page-wrap">
+        <div className="screen-label">{label}</div>
+        <div className="page">
+          <Sidebar view={label.split(' ')[1] || 'dashboard'} onNav={noop} onNewInvoice={noop} />
+          <main className="main">{children}</main>
+        </div>
+      </div>
+    );
+
+    const PrintDeck = () => (
+      <>
+        <Page label="01 Dashboard"><Dashboard onNav={noop} onOpenInvoice={noop} /></Page>
+        <Page label="02 Invoices"><InvoicesList onOpenInvoice={noop} onNew={noop} /></Page>
+        <Page label="03 Invoice — new"><InvoiceNew onCancel={noop} onSave={noop} /></Page>
+        <Page label="04 Invoice — detail"><InvoiceDetail invoiceId="INV-0142" onBack={noop} onMarkPaid={noop} /></Page>
+        <Page label="05 Clients"><ClientsList /></Page>
+        <Page label="06 Settings"><Settings /></Page>
+      </>
+    );
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<PrintDeck />);
+
+    // Auto-print once fonts + JSX + a settle delay are ready
+    (async () => {
+      try { if (document.fonts && document.fonts.ready) await document.fonts.ready; } catch (e) {}
+      setTimeout(() => window.print(), 700);
+    })();
+  </script>
+</body>
+</html>
