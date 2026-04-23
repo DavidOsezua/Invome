@@ -1,8 +1,11 @@
+import SigninForm from "../features/authenticationFeature/authenticationComponents/SigninForm";
 
 const SignupPage = () => {
   return (
-    <div>SignupPage</div>
-  )
-}
+    <div>
+      <SigninForm />
+    </div>
+  );
+};
 
-export default SignupPage
+export default SignupPage;

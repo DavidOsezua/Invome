@@ -1,8 +1,24 @@
+import { Button } from "../../../components/ui/button";
+import { Input } from "../../../components/ui/input";
 
 const LoginForm = () => {
   return (
-    <div>LoginForm</div>
-  )
-}
+    <form className="space-y-2">
+      <div>
+        <label htmlFor="">Email</label>
+        <Input />
+      </div>
 
-export default LoginForm
+      <div>
+        <label htmlFor="">Password</label>
+        <Input />
+      </div>
+
+      <div>
+        <Button>Login</Button>
+      </div>
+    </form>
+  );
+};
+
+export default LoginForm;

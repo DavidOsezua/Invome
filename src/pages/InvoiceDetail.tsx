@@ -8,9 +8,9 @@ import { cn } from "../lib/utils"
 import type { InvoiceStatus } from "../types"
 
 interface InvoiceDetailProps {
-  invoiceId: string
-  onBack: () => void
-  onMarkPaid: () => void
+  invoiceId?: string
+  onBack?: () => void
+  onMarkPaid?: () => void
 }
 
 const bannerConfig: Record<InvoiceStatus, { bg: string; fg: string; text: string }> = {
