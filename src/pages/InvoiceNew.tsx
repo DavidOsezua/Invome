@@ -15,10 +15,10 @@ interface InvoiceNewProps {
 }
 
 interface LineItem {
-  id?: number;
+  id: number;
   desc?: string;
-  qty?: number;
-  unit?: number;
+  qty: number;
+  unit: number;
 }
 
 export function InvoiceNew({ onCancel, onSave }: InvoiceNewProps) {
@@ -47,7 +47,7 @@ export function InvoiceNew({ onCancel, onSave }: InvoiceNewProps) {
         l.id === id ? { ...l, [k]: k === "desc" ? v : Number(v) || 0 } : l,
       ),
     );
-  const removeLine = (id: number) => setLines(lines.filter((l) => l.id !== id));
+  // const removeLine = (id: number) => setLines(lines.filter((l) => l.id !== id));
 
   return (
     <div
@@ -130,7 +130,7 @@ export function InvoiceNew({ onCancel, onSave }: InvoiceNewProps) {
                     <Input
                       type="number"
                       value={l.qty}
-                      onChange={(e) => updateLine(l.id, "qty", e.target.value)}
+                      
                       className="text-right t-num"
                     />
                   </Td>
@@ -138,7 +138,7 @@ export function InvoiceNew({ onCancel, onSave }: InvoiceNewProps) {
                     <Input
                       type="number"
                       value={l.unit}
-                      onChange={(e) => updateLine(l.id, "unit", e.target.value)}
+                      
                       className="text-right t-num"
                     />
                   </Td>
@@ -149,7 +149,7 @@ export function InvoiceNew({ onCancel, onSave }: InvoiceNewProps) {
                   </Td>
                   <Td>
                     <button
-                      onClick={() => removeLine(l.id)}
+                    
                       className="bg-transparent border-0 text-muted-foreground cursor-pointer p-1 hover:text-foreground"
                     >
                       <X size={14} />

@@ -90,7 +90,7 @@ function ClientDrawer({ client, invoices, onClose }: ClientDrawerProps) {
   return (
     <div className="fixed inset-0 z-50">
       <div onClick={onClose} className="absolute inset-0 bg-foreground/35" />
-      <div className="absolute right-0 top-0 h-screen w-[440px] bg-white shadow-lg flex flex-col">
+      <div className="absolute right-0 top-0 h-screen w-110 bg-white shadow-lg flex flex-col">
         <div className="flex justify-between items-start px-6 py-5 border-b border-surface-muted">
           <div>
             <h3 className="m-0 text-[18px] font-semibold text-foreground">{client.company}</h3>

@@ -17,12 +17,7 @@ import { formatMoney } from "../utils/money";
 import { formatDate } from "../utils/fmt";
 import { NavLink } from "react-router-dom";
 
-interface InvoicesListProps {
-  onOpenInvoice?: (id: string) => void;
-  onNew?: () => void;
-}
-
-export function InvoicesList({ onOpenInvoice, onNew }: InvoicesListProps) {
+export function InvoicesList() {
   const [selected, setSelected] = useState<Set<string>>(new Set());
   const [statusFilter, setStatusFilter] = useState("all");
   const [search, setSearch] = useState("");
@@ -37,11 +32,11 @@ export function InvoicesList({ onOpenInvoice, onNew }: InvoicesListProps) {
     return true;
   });
 
-  const toggle = (id: string) => {
-    const next = new Set(selected);
-    next.has(id) ? next.delete(id) : next.add(id);
-    setSelected(next);
-  };
+  // const toggle = () => {
+  //   const next = new Set(selected);
+  //   // next.has(id) ? next.delete(id) : next.add(id);
+  //   setSelected(next);
+  // };
 
   const toggleAll = () => {
     if (selected.size === filtered.length) setSelected(new Set());
@@ -176,17 +171,10 @@ export function InvoicesList({ onOpenInvoice, onNew }: InvoicesListProps) {
                   }
                 >
                   <Td>
-                    <input
-                      type="checkbox"
-                      checked={isSel}
-                      onChange={() => toggle(inv.id)}
-                    />
+                    <input type="checkbox" checked={isSel} />
                   </Td>
                   <Td>
-                    <button
-                      onClick={() => onOpenInvoice(inv.id)}
-                      className="t-num font-medium text-foreground hover:underline cursor-pointer bg-transparent border-0 p-0"
-                    >
+                    <button className="t-num font-medium text-foreground hover:underline cursor-pointer bg-transparent border-0 p-0">
                       {inv.id}
                     </button>
                   </Td>

@@ -7,7 +7,6 @@ import {
   Plus,
 } from "lucide-react";
 import { cn } from "../lib/utils";
-import type { View } from "../types";
 import { NavLink, useLocation } from "react-router-dom";
 
 const navItems = [
@@ -18,20 +17,12 @@ const navItems = [
   { id: "settings" as const, label: "Settings", Icon: Settings },
 ];
 
-function isActive(navId: string, view: View) {}
-
-interface SidebarProps {
-  view?: View;
-  onNav?: (view: View) => void;
-  onNewInvoice?: () => void;
-}
-
-export function Sidebar({ view, onNav, onNewInvoice }: SidebarProps) {
+export function Sidebar() {
   const location = useLocation();
   console.log(location.pathname);
 
   return (
-    <aside className="w-[232px] shrink-0 bg-sidebar flex flex-col h-screen sticky top-0 py-5 px-3.5">
+    <aside className="w-58 shrink-0 bg-sidebar flex flex-col h-screen sticky top-0 py-5 px-3.5">
       {/* Logo */}
       <div className="flex items-center gap-2.5 px-2 pb-4.5 border-b border-sidebar-border mb-3.5">
         <div className="w-7 h-7 rounded-md bg-white/10 grid place-items-center shrink-0">
@@ -51,13 +42,13 @@ export function Sidebar({ view, onNav, onNewInvoice }: SidebarProps) {
       </div>
 
       {/* New invoice */}
-      <button
-        onClick={onNewInvoice}
+      <NavLink
+        to={"newinvoice"}
         className="w-full mb-4.5 h-9 flex items-center justify-center gap-2 rounded-sm border border-white/20 text-sidebar-foreground text-sm font-medium hover:bg-sidebar-accent transition-colors cursor-pointer"
       >
         <Plus size={16} />
         New invoice
-      </button>
+      </NavLink>
 
       {/* Nav */}
       <nav className="flex flex-col gap-0.5">

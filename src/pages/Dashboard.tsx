@@ -8,15 +8,10 @@ import { PageHeader } from "../layout/PageHeader";
 import { formatMoney } from "../utils/money";
 import { formatDate } from "../utils/fmt";
 import { cn } from "../lib/utils";
-import type { View, RevenueDataPoint } from "../types";
 import type { LucideIcon } from "lucide-react";
+import type { RevenueDataPoint } from "../types";
 
-interface DashboardProps {
-  onNav?: (view: View) => void;
-  onOpenInvoice?: (id: string) => void;
-}
-
-export function Dashboard({ onNav, onOpenInvoice }: DashboardProps) {
+export function Dashboard() {
   const outstanding = invoices
     .filter((i) => i.status === "sent" || i.status === "overdue")
     .reduce(
@@ -105,7 +100,6 @@ export function Dashboard({ onNav, onOpenInvoice }: DashboardProps) {
                 return (
                   <div
                     key={inv.id}
-                    onClick={() => onOpenInvoice(inv.id)}
                     className="flex justify-between items-center py-2.5 border-b border-surface-muted cursor-pointer last:border-0"
                   >
                     <div>
@@ -135,7 +129,7 @@ export function Dashboard({ onNav, onOpenInvoice }: DashboardProps) {
         <CardHeader
           title="Recent invoices"
           action={
-            <Button variant="ghost" size="sm" onClick={() => onNav("invoices")}>
+            <Button variant="ghost" size="sm">
               View all →
             </Button>
           }
@@ -156,7 +150,6 @@ export function Dashboard({ onNav, onOpenInvoice }: DashboardProps) {
               return (
                 <tr
                   key={inv.id}
-                  onClick={() => onOpenInvoice(inv.id)}
                   className="cursor-pointer hover:bg-canvas transition-colors"
                 >
                   <Td>
@@ -203,7 +196,7 @@ function StatCard({ label, value, sub, Icon, tint }: StatCardProps) {
   return (
     <div
       className={cn(
-        "border rounded-md p-[18px] shadow-xs",
+        "border rounded-md p-4.5 shadow-xs",
         tint === "red" && "bg-outstanding-tint border-[rgba(254,202,202,0.5)]",
         tint === "green" && "bg-paid-tint border-[rgba(187,247,208,0.5)]",
         !tint && "bg-white border-border",
@@ -244,14 +237,14 @@ function RevenueChart({ data }: RevenueChartProps) {
 
   return (
     <div className="px-5 pb-5 pt-4">
-      <div className="t-num text-[28px] font-semibold text-foreground tracking-tight mb-[18px]">
+      <div className="t-num text-[28px] font-semibold text-foreground tracking-tight mb-4.5">
         ₦{"\u2009"}
         {total.toLocaleString("en-NG")}
         <span className="text-[13px] font-normal text-secondary-foreground ml-2.5">
           total billed
         </span>
       </div>
-      <div className="flex items-end gap-[18px] h-40 border-b border-border pb-1">
+      <div className="flex items-end gap-4.5 h-40 border-b border-border pb-1">
         {data.map((d, i) => (
           <div
             key={i}
